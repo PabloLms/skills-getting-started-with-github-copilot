@@ -84,7 +84,7 @@ section h3 {
   margin-top: 10px;
 }
 
-/* Asegura que el título de la lista esté en su propia línea y tenga espaciado */
+/* Título "Participants:" en negrita y separado */
 .activity-card > div > strong {
   display: block;
   margin-bottom: 6px;
@@ -92,14 +92,14 @@ section h3 {
   font-weight: 700;
 }
 
-/* Alinea las viñetas con el contenido de la tarjeta y evita que se salgan demasiado a la izquierda */
+/* Lista de participantes: viñetas alineadas con el contenido */
 .activity-card > div > ul {
   list-style-position: inside;
-  padding-left: 1rem; /* controla la indentación de las viñetas */
+  padding-left: 1rem; /* Indentación de la lista de participantes */
   margin: 0;
 }
 
-/* Espaciado entre elementos de la lista para mejorar la legibilidad */
+/* Espaciado entre nombres de participantes */
 .activity-card > div > ul li {
   margin-bottom: 6px;
 }
@@ -171,4 +171,10 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+}
+
+/* ==== Estilos para la sección de Participantes ==== */
+/* Contenedor principal de la lista de participantes */
+.activity-card > div {
+  margin-top: 10px;
 }

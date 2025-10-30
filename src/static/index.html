@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mergington High School Activities</title>
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Use ruta explícita relativa y cache-bust para forzar recarga en el navegador -->
+    <link rel="stylesheet" href="./styles.css?v=1" />
   </head>
   <body>
     <header>
@@ -46,5 +47,23 @@
     </footer>
 
     <script src="app.js"></script>
+    <!-- Debug: comprobar que la hoja de estilos se ha cargado y añadir fallback si no -->
+    <script>
+      (function () {
+        const cssName = 'styles.css';
+        const found = Array.from(document.styleSheets).some(s => s.href && s.href.includes(cssName));
+        if (!found) {
+          console.warn('Hoja de estilos no detectada en document.styleSheets. Revisa Network/Console.');
+          // Intento de fallback: añadir el link manualmente para depuración
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = './styles.css?v=1';
+          document.head.appendChild(link);
+          console.info('Fallback: se ha añadido ./styles.css?v=1 al head');
+        } else {
+          console.info('Hoja de estilos detectada correctamente.');
+        }
+      })();
+    </script>
   </body>
 </html>
