@@ -84,7 +84,7 @@ section h3 {
   margin-top: 10px;
 }
 
-/* Título "Participants:" en negrita y separado */
+/* Título para cada participant en negrita y separado */
 .activity-card > div > strong {
   display: block;
   margin-bottom: 6px;
@@ -99,7 +99,7 @@ section h3 {
   margin: 0;
 }
 
-/* Espaciado entre nombres de participantes */
+/* Espaciado entre nombres de cada participant */
 .activity-card > div > ul li {
   margin-bottom: 6px;
 }
