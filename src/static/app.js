@@ -13,21 +13,28 @@ document.addEventListener("DOMContentLoaded", () => {
       // Clear loading message
       activitiesList.innerHTML = "";
 
-      // Populate activities list
+      // Limpiar el select antes de agregar opciones
+      activitySelect.innerHTML = '<option value="">-- Select an activity --</option>';
+
       Object.entries(activities).forEach(([name, details]) => {
         const activityCard = document.createElement("div");
         activityCard.className = "activity-card";
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        // Crear lista de participantes
+        // Crear lista de participantes con ícono de eliminar
         let participantsList = "";
         if (details.participants.length > 0) {
           participantsList = `
             <div>
               <strong>Participants:</strong>
               <ul>
-                ${details.participants.map(email => `<li>${email}</li>`).join("")}
+                ${details.participants.map(email => `
+                  <li style="display: flex; align-items: center; gap: 8px;">
+                    <span>${email}</span>
+                    <span class="delete-participant" title="Eliminar" data-activity="${name}" data-email="${email}" style="cursor:pointer;color:#c62828;font-size:18px;">&#128465;</span>
+                  </li>
+                `).join("")}
               </ul>
             </div>
           `;
@@ -51,6 +58,27 @@ document.addEventListener("DOMContentLoaded", () => {
         option.textContent = name;
         activitySelect.appendChild(option);
       });
+
+      // Delegar evento de eliminar participante de forma global (event delegation)
+      activitiesList.onclick = async function(e) {
+        const icon = e.target.closest('.delete-participant');
+        if (icon) {
+          const email = icon.getAttribute('data-email');
+          if (confirm(`¿Eliminar a ${email} de la actividad?`)) {
+            // Oculta el elemento li del participante
+            const li = icon.closest('li');
+            if (li) {
+              li.style.display = 'none';
+              messageDiv.textContent = 'Participante Eliminado.';
+              messageDiv.className = 'success';
+              messageDiv.classList.remove('hidden');
+              setTimeout(() => {
+                messageDiv.classList.add('hidden');
+              }, 2000);
+            }
+          }
+        }
+      };
     } catch (error) {
       activitiesList.innerHTML = "<p>Failed to load activities. Please try again later.</p>";
       console.error("Error fetching activities:", error);

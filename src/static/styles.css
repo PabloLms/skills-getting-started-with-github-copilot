@@ -94,8 +94,8 @@ section h3 {
 
 /* Lista de participantes: viñetas alineadas con el contenido */
 .activity-card > div > ul {
-  list-style-position: inside;
-  padding-left: 1rem; /* Indentación de la lista de participantes */
+  list-style: none;
+  padding-left: 0;
   margin: 0;
 }
 
